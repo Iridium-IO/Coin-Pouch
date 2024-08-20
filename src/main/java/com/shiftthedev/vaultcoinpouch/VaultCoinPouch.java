@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.shiftthedev.vaultcoinpouch.config.ReloadConfigCommand;
 import com.shiftthedev.vaultcoinpouch.config.ShowConfigCommand;
 import com.shiftthedev.vaultcoinpouch.config.VCPConfig;
+import com.shiftthedev.vaultcoinpouch.utils.KeyBindings;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -13,6 +14,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -30,10 +32,10 @@ public class VaultCoinPouch
 
     public VaultCoinPouch()
     {
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::imc);
         MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, this::registerCommand);
-
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> MinecraftForge.EVENT_BUS.addListener(EventPriority.NORMAL, this::registerClientCommand));
     }
 
@@ -50,6 +52,10 @@ public class VaultCoinPouch
                         .priority(780)
                         .icon(EMPTY_COIN_POUCH_SLOT)
                         .build());
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event) {
+        KeyBindings.init();
     }
 
     private void registerCommand(RegisterCommandsEvent event)

@@ -48,5 +48,9 @@
   "configs.vaultcoinpouch.jewelCuttingStationInteraction.tooltip": "Enable / Disable interaction with §6Jewel§r §6Cutting§r §6Station §rwithout taking coins out of the pouch.",
 
   "configs.vaultcoinpouch.spiritExtractorInteraction.name": "Spirit Extractor: %s",
-  "configs.vaultcoinpouch.spiritExtractorInteraction.tooltip": "Enable / Disable interaction with §6Spirit§r §6Extractor§r §rwithout taking coins out of the pouch."
+  "configs.vaultcoinpouch.spiritExtractorInteraction.tooltip": "Enable / Disable interaction with §6Spirit§r §6Extractor§r §rwithout taking coins out of the pouch.",
+
+  "key.categories.vaultcoinpouch": "Vault Coin Pouch",
+  "key.vaultcoinpouch.showpouch": "Open Coin Pouch"
+
 }
